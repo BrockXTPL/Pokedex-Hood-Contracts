@@ -1,0 +1,18 @@
+# Dependencies and generated artifacts
+node_modules/
+artifacts/
+cache/
+coverage/
+coverage.json
+typechain-types/
+deployments/unknown-*/
+
+# Local secrets and deployment state
+.env
+.env.*
+!.env.example
+
+# Tooling
+.DS_Store
+*.log
+.nyc_output/

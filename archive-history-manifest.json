@@ -1,0 +1,124 @@
+{
+  "sourceKey": "tcgdex-price-history",
+  "sourceUrl": "https://github.com/tcgdex/price-history",
+  "sourceVariant": "holo-good",
+  "generatedAt": "2026-07-18T10:52:54.793Z",
+  "monthlyPointCount": 18,
+  "range": {
+    "startsAt": "2022-11-30",
+    "endsAt": "2024-09-23"
+  },
+  "excludedApprovedComponents": [
+    "base1-8"
+  ],
+  "points": [
+    {
+      "observedAt": "2022-11-30",
+      "weightedMarketValueUsd": 30.37,
+      "normalizedAuditValue": 1000,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2022-12-31",
+      "weightedMarketValueUsd": 26.58,
+      "normalizedAuditValue": 875.37,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2023-01-12",
+      "weightedMarketValueUsd": 54.83,
+      "normalizedAuditValue": 1805.64,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2023-02-28",
+      "weightedMarketValueUsd": 36.35,
+      "normalizedAuditValue": 1197.01,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2023-03-31",
+      "weightedMarketValueUsd": 20.95,
+      "normalizedAuditValue": 689.99,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2023-04-30",
+      "weightedMarketValueUsd": 38.34,
+      "normalizedAuditValue": 1262.5,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2023-05-31",
+      "weightedMarketValueUsd": 29.9,
+      "normalizedAuditValue": 984.72,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2023-06-30",
+      "weightedMarketValueUsd": 26.93,
+      "normalizedAuditValue": 886.67,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2023-07-31",
+      "weightedMarketValueUsd": 28.75,
+      "normalizedAuditValue": 946.87,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2023-08-31",
+      "weightedMarketValueUsd": 34.3,
+      "normalizedAuditValue": 1129.44,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2023-09-30",
+      "weightedMarketValueUsd": 22.04,
+      "normalizedAuditValue": 725.77,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2023-10-31",
+      "weightedMarketValueUsd": 30.38,
+      "normalizedAuditValue": 1000.59,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2023-11-27",
+      "weightedMarketValueUsd": 31.52,
+      "normalizedAuditValue": 1038.02,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2024-05-31",
+      "weightedMarketValueUsd": 36.31,
+      "normalizedAuditValue": 1195.72,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2024-06-30",
+      "weightedMarketValueUsd": 39.79,
+      "normalizedAuditValue": 1310.25,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2024-07-31",
+      "weightedMarketValueUsd": 46.87,
+      "normalizedAuditValue": 1543.38,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2024-08-31",
+      "weightedMarketValueUsd": 39.02,
+      "normalizedAuditValue": 1285.05,
+      "componentCount": 15
+    },
+    {
+      "observedAt": "2024-09-23",
+      "weightedMarketValueUsd": 39.49,
+      "normalizedAuditValue": 1300.59,
+      "componentCount": 15
+    }
+  ]
+}

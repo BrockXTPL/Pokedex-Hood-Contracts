@@ -1,0 +1,308 @@
+{
+  "latestSnapshot": {
+    "id": "120001",
+    "weightedMarketValueUsd": "118.54933333",
+    "componentCount": 15,
+    "dataProvider": "TCGdex / TCGplayer",
+    "calculationVersion": "1.0.0",
+    "observedAt": "2026-07-18T10:06:46.000Z"
+  },
+  "components": [
+    {
+      "id": 1,
+      "cardName": "Alakazam",
+      "cardNumber": "1",
+      "providerCardId": "base1-1",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 10,
+      "cardName": "Mewtwo",
+      "cardNumber": "10",
+      "providerCardId": "base1-10",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 11,
+      "cardName": "Nidoking",
+      "cardNumber": "11",
+      "providerCardId": "base1-11",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 12,
+      "cardName": "Ninetales",
+      "cardNumber": "12",
+      "providerCardId": "base1-12",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 13,
+      "cardName": "Poliwrath",
+      "cardNumber": "13",
+      "providerCardId": "base1-13",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 14,
+      "cardName": "Raichu",
+      "cardNumber": "14",
+      "providerCardId": "base1-14",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 15,
+      "cardName": "Venusaur",
+      "cardNumber": "15",
+      "providerCardId": "base1-15",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 16,
+      "cardName": "Zapdos",
+      "cardNumber": "16",
+      "providerCardId": "base1-16",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "cardName": "Blastoise",
+      "cardNumber": "2",
+      "providerCardId": "base1-2",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "cardName": "Chansey",
+      "cardNumber": "3",
+      "providerCardId": "base1-3",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 4,
+      "cardName": "Charizard",
+      "cardNumber": "4",
+      "providerCardId": "base1-4",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 5,
+      "cardName": "Clefairy",
+      "cardNumber": "5",
+      "providerCardId": "base1-5",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 6,
+      "cardName": "Gyarados",
+      "cardNumber": "6",
+      "providerCardId": "base1-6",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 7,
+      "cardName": "Hitmonchan",
+      "cardNumber": "7",
+      "providerCardId": "base1-7",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 8,
+      "cardName": "Machamp",
+      "cardNumber": "8",
+      "providerCardId": "base1-8",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    },
+    {
+      "id": 9,
+      "cardName": "Magneton",
+      "cardNumber": "9",
+      "providerCardId": "base1-9",
+      "approvedVariant": "holofoil",
+      "weight": "0.0625000000",
+      "isActive": true
+    }
+  ],
+  "componentData": [
+    {
+      "cardName": "Nidoking",
+      "providerCardId": "base1-11",
+      "cardNumber": "11",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 39.08,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Ninetales",
+      "providerCardId": "base1-12",
+      "cardNumber": "12",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 36.14,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Alakazam",
+      "providerCardId": "base1-1",
+      "cardNumber": "1",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 86.56,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Mewtwo",
+      "providerCardId": "base1-10",
+      "cardNumber": "10",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 78.81,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Venusaur",
+      "providerCardId": "base1-15",
+      "cardNumber": "15",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 157.26,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Zapdos",
+      "providerCardId": "base1-16",
+      "cardNumber": "16",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 53.58,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Blastoise",
+      "providerCardId": "base1-2",
+      "cardNumber": "2",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 232.06,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Chansey",
+      "providerCardId": "base1-3",
+      "cardNumber": "3",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 64.75,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Charizard",
+      "providerCardId": "base1-4",
+      "cardNumber": "4",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 773.51,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Poliwrath",
+      "providerCardId": "base1-13",
+      "cardNumber": "13",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 36.87,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Raichu",
+      "providerCardId": "base1-14",
+      "cardNumber": "14",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 70.29,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Clefairy",
+      "providerCardId": "base1-5",
+      "cardNumber": "5",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 41.54,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Gyarados",
+      "providerCardId": "base1-6",
+      "cardNumber": "6",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 48.52,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Hitmonchan",
+      "providerCardId": "base1-7",
+      "cardNumber": "7",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 23.22,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    },
+    {
+      "cardName": "Magneton",
+      "providerCardId": "base1-9",
+      "cardNumber": "9",
+      "approvedVariant": "holofoil",
+      "weight": 0.0625,
+      "marketPriceUsd": 36.05,
+      "sourceTimestamp": "2026-07-18T08:01:55.858Z",
+      "source": "TCGdex / TCGplayer"
+    }
+  ]
+}

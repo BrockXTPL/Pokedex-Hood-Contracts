@@ -1,0 +1,723 @@
+Build a full-stack EVM dApp on Robinhood Chain testnet called **Pokedex**.
+
+The platform is a decentralized Pokémon card set index trading platform where users can connect MetaMask or Robinhood Wallet, provide liquidity, and trade synthetic Pokémon set indexes using long and short positions with 1x leverage only.
+
+The main platform token details are:
+
+* Platform name: Pokedex
+* Token name: Pokemon Index
+* Token ticker: $Pokedex
+
+Do not deploy anything to mainnet. Everything must be built and deployed on Robinhood Chain testnet.
+
+## Core concept
+
+The platform should initially support the three largest Pokémon card sets by total historical market value or trading activity.
+
+The first required index is:
+
+* Original Pokémon Base Set
+
+Select the other two largest sets using available market data, but keep the architecture configurable so additional sets can be added later.
+
+Each Pokémon set should have its own synthetic index price, historical chart, liquidity pool, trading market, and oracle price feed.
+
+Users do not receive or own physical Pokémon cards. They trade synthetic exposure to the price movement of each set index.
+
+## Historical Pokémon price data
+
+Find and integrate a free or publicly accessible Pokémon card pricing API that provides historical pricing data.
+
+For the Original Pokémon Base Set:
+
+* Retrieve all available historical data.
+* Generate an all-time historical index chart.
+* Use accurate historical price points from the selected data provider.
+* Do not generate random or fake historical values.
+* Display the data provider and last update time.
+* Update the index whenever the selected API updates its pricing data.
+
+If no single free API provides complete all-time data for the full set, build a modular data-provider system that can combine available historical data sources.
+
+Create configurable adapters so additional Pokémon data providers can be added later without redesigning the index system.
+
+Store all fetched raw price observations in the database.
+
+Store:
+
+* Card name
+* Card set
+* Card number
+* Variant
+* Condition
+* Grading company
+* Grade
+* Market price
+* Source
+* Timestamp
+* API response identifier
+* Data retrieval timestamp
+
+Do not mix raw, graded, first-edition, unlimited, shadowless, reverse holo, holo, or other variants unless the index methodology specifically defines how they are treated.
+
+## Index methodology
+
+Create a transparent and configurable index methodology for each Pokémon set.
+
+The index should be calculated from the cards included in that set using available market pricing data.
+
+Use a weighted index methodology that can support:
+
+* Equal weighting
+* Market-value weighting
+* Liquidity weighting
+* Custom administrator-defined weighting
+
+For the initial version, use a configurable weighted methodology that favors cards with stronger pricing data and higher trading liquidity.
+
+Normalize each index to a clear starting value, such as 1,000, at the earliest reliable historical date.
+
+Store the following for every index calculation:
+
+* Index identifier
+* Set name
+* Index value
+* Timestamp
+* Component card prices
+* Component weights
+* Data provider
+* Calculation version
+* Methodology version
+* Oracle update status
+
+Create an index methodology page where users can see:
+
+* Which cards are included
+* Each card’s weight
+* Current component prices
+* Historical changes
+* Data sources
+* Index calculation formula
+* Last index update
+* Last oracle update
+
+## Oracle synchronization
+
+Create a smart contract called `PokedexIndexOracle`.
+
+The off-chain backend should calculate each Pokémon set index and submit the finalized index value to the oracle contract on Robinhood Chain testnet.
+
+The website chart, trading contracts, position profit and loss, position settlement, and closing prices must all use the same finalized oracle value.
+
+The frontend should clearly distinguish between:
+
+* Latest off-chain calculated value
+* Latest finalized onchain oracle value
+* Oracle update timestamp
+* Data API update timestamp
+
+The backend should automatically submit a new oracle update whenever the underlying Pokémon pricing API publishes new data and a new index calculation is available.
+
+Use signed oracle updates with:
+
+* EIP-712 signatures
+* Authorized oracle signer
+* Nonce protection
+* Timestamp validation
+* Stale-price protection
+* Duplicate-update protection
+* Maximum permitted price-change checks
+* Emergency pause control
+* Configurable update frequency
+* Configurable maximum oracle age
+
+The trading contracts must reject new positions when the oracle price is stale.
+
+## Historical chart
+
+Create an all-time chart for the Original Pokémon Base Set using accurate historical data points.
+
+Also create charts for the other two supported Pokémon sets.
+
+Use TradingView Lightweight Charts or another high-quality open-source chart library.
+
+Chart ranges must include:
+
+* 1D
+* 1W
+* 1M
+* 3M
+* 1Y
+* All
+
+The chart should show:
+
+* Current index value
+* Percentage change
+* Absolute change
+* High
+* Low
+* Last updated time
+* Oracle update status
+* Historical data source
+* Trading volume for the synthetic index
+* Available liquidity
+* Open interest
+* Long exposure
+* Short exposure
+
+The chart should automatically refresh whenever a new finalized oracle value becomes available.
+
+## Wallet connection
+
+Allow users to connect:
+
+* MetaMask
+* Robinhood Wallet
+* WalletConnect-compatible wallets
+
+Use Wagmi and Viem.
+
+Automatically detect Robinhood Chain testnet.
+
+If the user is on the wrong network, show a button to add or switch to Robinhood Chain testnet.
+
+Display:
+
+* Connected address
+* Network
+* Testnet collateral balance
+* LP token balance
+* Open positions
+* Claimable trading fees
+* Transaction history
+
+## Testnet collateral token
+
+Create a testnet-only mock stablecoin called `MockUSD`.
+
+The token should use 6 decimals.
+
+Include a testnet faucet that lets users mint a limited amount of MockUSD for testing.
+
+Add configurable faucet limits and cooldowns.
+
+MockUSD will be used for:
+
+* Long positions
+* Short positions
+* Liquidity deposits
+* Trading fees
+* Position settlement
+
+## Trading system
+
+Users should be able to long or short each Pokémon set index using 1x leverage only.
+
+Do not allow leverage above 1x.
+
+Users must fully collateralize every position.
+
+Example:
+
+* A $100 long requires $100 of collateral.
+* A $100 short requires $100 of collateral.
+
+Users should be able to:
+
+* Select a Pokémon set index
+* Choose Long or Short
+* Enter position size
+* Review entry price
+* Review trading fee
+* Review estimated price impact
+* Open the position
+* View live unrealized profit or loss
+* Close the full position
+* Partially close a position
+* View realized profit or loss
+* View position history
+
+Use the finalized onchain oracle price for position entry, profit and loss calculations, and position closing.
+
+The position profit and loss should be based on the percentage movement of the index.
+
+Long position example:
+
+* Entry index: 1,000
+* Exit index: 1,100
+* Index change: +10%
+* $100 position profit: $10
+
+Short position example:
+
+* Entry index: 1,000
+* Exit index: 900
+* Index change: -10%
+* $100 short position profit: $10
+
+Prevent users from losing more than their deposited collateral.
+
+Do not implement liquidations because leverage is fixed at 1x.
+
+## Market structure
+
+Match opposing long and short exposure whenever possible.
+
+Example:
+
+* $1,000 total long exposure
+* $800 total short exposure
+* Liquidity pool only backs the unmatched $200 net long exposure
+
+The liquidity pool should act as the counterparty only for net unmatched exposure.
+
+Track:
+
+* Total long open interest
+* Total short open interest
+* Net pool exposure
+* Available pool collateral
+* Reserved collateral
+* Maximum safe payout
+* Utilization rate
+* Realized pool profit and loss
+* Unrealized pool profit and loss
+
+Add risk controls that prevent positions from being opened when the pool would become undercollateralized.
+
+Include:
+
+* Maximum position size
+* Maximum total open interest
+* Maximum net exposure
+* Maximum utilization
+* Minimum remaining pool collateral
+* Stale oracle rejection
+* Emergency pause
+* Per-market trading limits
+* Configurable fee rates
+* Configurable spread
+* Configurable minimum trade size
+* Configurable maximum trade size
+
+## Liquidity pool launch system
+
+Each Pokémon set index should begin in a pre-launch liquidity phase.
+
+Users can deposit MockUSD into the liquidity pool before the index trading market launches.
+
+Each index must have a configurable minimum liquidity cap.
+
+The index should not allow long or short trading until the minimum liquidity cap has been reached.
+
+The market lifecycle should be:
+
+1. Proposed
+2. Liquidity fundraising
+3. Minimum liquidity reached
+4. Ready to launch
+5. Active trading
+6. Paused
+7. Closed
+
+Before launch, display:
+
+* Minimum liquidity required
+* Current liquidity deposited
+* Percentage funded
+* Number of liquidity providers
+* Estimated launch status
+* User deposit amount
+* User share of the pool
+
+Once the minimum liquidity cap is reached:
+
+* Activate the index trading market.
+* Lock the launch condition.
+* Enable long and short trading.
+* Mint LP tokens representing each provider’s ownership share.
+* Begin distributing trading fees to LPs.
+
+Do not automatically activate trading if the oracle is unavailable or stale.
+
+Require both:
+
+* Minimum liquidity reached
+* Valid oracle price available
+
+## Liquidity provider system
+
+Users should be able to deposit MockUSD into each Pokémon index liquidity pool.
+
+Each market must have its own separate liquidity pool.
+
+Liquidity providers receive an ERC-20 LP token representing their proportional share of that specific pool.
+
+LP providers should earn fees from trading activity in that index.
+
+Trading fees should be distributed proportionally based on LP ownership.
+
+Support:
+
+* Deposit liquidity
+* Withdraw liquidity
+* Claim fees
+* View pool share
+* View LP token balance
+* View deposited amount
+* View accrued fees
+* View realized pool profit and loss
+* View unrealized pool exposure
+* View current utilization
+* View withdrawal availability
+
+LP withdrawals must be limited when collateral is reserved for open positions.
+
+Implement a withdrawal queue or delayed withdrawal system so LPs cannot remove collateral that is required to settle active positions.
+
+Display any withdrawal delay clearly in the UI.
+
+Create separate LP tokens for each Pokémon index market.
+
+Example:
+
+* Base Set LP token
+* Second set LP token
+* Third set LP token
+
+## Trading fees
+
+Charge a configurable fee when users:
+
+* Open positions
+* Close positions
+
+Route the majority of trading fees to liquidity providers.
+
+Create configurable fee allocations for:
+
+* Liquidity providers
+* Protocol treasury
+* Insurance or safety reserve
+* Optional $Pokedex-related treasury allocation
+
+Track fee revenue separately for each index market.
+
+LP fee accounting must not depend on manually distributing funds to every LP.
+
+Use an accumulated-fee-per-share accounting model or another gas-efficient fee distribution design.
+
+## $Pokedex token
+
+Create a testnet ERC-20 token with:
+
+* Name: Pokemon Index
+* Symbol: Pokedex
+* Display ticker: $Pokedex
+* 18 decimals
+
+Make token supply and distribution configurable in the deployment settings.
+
+Do not connect the $Pokedex token directly to index pricing.
+
+The Pokémon index prices must come from Pokémon card market data, not from the market price of $Pokedex.
+
+Create a separate treasury contract that can receive platform revenue or creator fees.
+
+Keep the following accounting systems separate:
+
+* $Pokedex token liquidity
+* Pokémon index liquidity pools
+* LP fee revenue
+* Protocol treasury funds
+* User trading collateral
+
+## Smart contracts
+
+Create the following Solidity contracts:
+
+1. `PokedexToken`
+
+   * ERC-20 token
+   * Name: Pokemon Index
+   * Symbol: Pokedex
+
+2. `MockUSD`
+
+   * Testnet stablecoin
+   * 6 decimals
+   * Controlled testnet faucet
+
+3. `PokedexIndexOracle`
+
+   * Supports multiple Pokémon set indexes
+   * Stores latest price
+   * Stores timestamp
+   * Stores nonce
+   * Stores methodology version
+   * Authorized signed updates
+   * Stale-price checks
+   * Pause control
+
+4. `PokedexMarketFactory`
+
+   * Creates new Pokémon index markets
+   * Creates separate pools and LP tokens
+   * Stores market configuration
+   * Enforces minimum liquidity requirements
+   * Tracks market lifecycle
+
+5. `PokedexTradingMarket`
+
+   * 1x long and short positions
+   * Fully collateralized positions
+   * Partial and full position closing
+   * Oracle-based profit and loss
+   * Opposing exposure netting
+   * Pool-backed unmatched exposure
+   * Trading fees
+   * Position limits
+   * Open interest tracking
+   * Emergency pause
+
+6. `PokedexLiquidityPool`
+
+   * Accepts MockUSD deposits
+   * Mints LP tokens
+   * Tracks available and reserved collateral
+   * Receives trading fees
+   * Handles LP withdrawals
+   * Supports delayed withdrawals
+   * Prevents insolvency
+
+7. `PokedexLPToken`
+
+   * Separate ERC-20 LP token for each market
+   * Represents proportional pool ownership
+
+8. `PokedexFeeRouter`
+
+   * Routes fees to LPs
+   * Routes protocol fees
+   * Routes safety reserve fees
+   * Keeps market accounting separate
+
+9. `PokedexTreasury`
+
+   * Holds protocol revenue
+   * Supports controlled deposits and withdrawals
+   * Uses role-based permissions
+
+Use OpenZeppelin contracts where appropriate.
+
+Include:
+
+* Reentrancy protection
+* Role-based access control
+* Pausable functionality
+* Safe token transfers
+* Checks-effects-interactions pattern
+* Explicit decimal handling
+* Custom Solidity errors
+* Detailed events
+* NatSpec documentation
+
+## Frontend design
+
+Create a clean trading interface inspired by Robinhood without copying Robinhood branding or proprietary assets.
+
+The design should use:
+
+* Dark interface
+* Green for positive movement
+* Red for negative movement
+* Large index price
+* Clean chart
+* Simple Long and Short buttons
+* Clear liquidity statistics
+* Minimal navigation
+* Mobile-responsive layout
+
+Main pages:
+
+1. Home
+
+   * Pokedex branding
+   * $Pokedex token information
+   * Three Pokémon set indexes
+   * Current price
+   * Daily change
+   * Liquidity
+   * Market status
+   * Trade button
+
+2. Index market page
+
+   * Set name
+   * Historical chart
+   * Current oracle price
+   * Long and Short interface
+   * Open interest
+   * Liquidity
+   * Trading volume
+   * Oracle status
+   * Component cards
+   * Methodology
+
+3. Liquidity page
+
+   * Deposit LP
+   * Withdraw LP
+   * Claim fees
+   * Pool utilization
+   * Pool exposure
+   * LP share
+   * Market launch progress
+
+4. Portfolio
+
+   * Open positions
+   * Closed positions
+   * Unrealized P&L
+   * Realized P&L
+   * LP positions
+   * Claimable fees
+   * Transaction history
+
+5. Launch progress page
+
+   * Three index markets
+   * Minimum liquidity cap
+   * Current liquidity
+   * Funding progress
+   * LP deposit button
+   * Market launch status
+
+6. Index methodology page
+
+   * Included cards
+   * Weights
+   * Data sources
+   * Historical methodology changes
+   * Calculation examples
+
+## Backend
+
+Use:
+
+* Next.js
+* TypeScript
+* PostgreSQL
+* Prisma
+* Wagmi
+* Viem
+* Solidity
+* Foundry
+* TradingView Lightweight Charts
+* Background job scheduler
+
+Create backend services for:
+
+* Pokémon API data ingestion
+* Historical data import
+* Card normalization
+* Duplicate price removal
+* Index calculation
+* Index history storage
+* Oracle transaction submission
+* Oracle update monitoring
+* Smart contract event indexing
+* User position history
+* Liquidity pool analytics
+* Trading volume analytics
+* Open interest analytics
+
+Create database tables for:
+
+* Pokémon sets
+* Pokémon cards
+* Card variants
+* Price observations
+* Index definitions
+* Index components
+* Index weights
+* Index values
+* Oracle updates
+* Markets
+* Liquidity pools
+* LP positions
+* Trading positions
+* Trades
+* Fees
+* Contract events
+* API providers
+* API ingestion jobs
+
+## Testing
+
+Deploy all contracts to Robinhood Chain testnet.
+
+Create deployment scripts and environment configuration for Robinhood Chain testnet.
+
+Create automated tests for:
+
+* Opening longs
+* Opening shorts
+* Closing longs
+* Closing shorts
+* Partial closing
+* Profit calculations
+* Loss calculations
+* Fee calculations
+* Long and short exposure matching
+* LP deposits
+* LP withdrawals
+* Withdrawal queue
+* Minimum liquidity launch
+* Preventing launch below minimum liquidity
+* Preventing launch without an oracle price
+* Oracle stale-price rejection
+* Oracle signature verification
+* Oracle nonce protection
+* Pool insolvency prevention
+* Maximum exposure enforcement
+* Decimal conversion
+* Multiple users trading simultaneously
+* Multiple independent index markets
+
+Use unit tests, integration tests, and Foundry fuzz tests.
+
+Create a test dashboard that allows simulated index updates so the full trading lifecycle can be tested even when the external Pokémon API has not published a new price.
+
+The simulated update tool must be available only in local development and testnet admin mode.
+
+## Deployment requirements
+
+Deploy the complete system on Robinhood Chain testnet.
+
+Provide:
+
+* Deployed contract addresses
+* Block explorer links
+* Contract ABIs
+* Deployment transaction hashes
+* Testnet website URL
+* Environment variable template
+* Database setup instructions
+* Oracle updater setup instructions
+* Pokémon API configuration
+* Test wallet instructions
+* MockUSD faucet instructions
+* Contract verification instructions
+* Redeployment instructions
+
+Verify all deployed contracts on the Robinhood Chain testnet block explorer when supported.
+
+Do not deploy to Robinhood Chain mainnet.
+
+Do not use real user funds.
+
+Do not leave placeholder buttons or mock interfaces in the final deployed testnet version.
+
+Build the full working testnet application, including the frontend, backend, database, oracle, smart contracts, liquidity pools, LP tokens, trading system, historical charts, wallet connection, and deployment configuration.
